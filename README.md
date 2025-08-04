@@ -30,15 +30,15 @@ Here is the list of blocks I will be building, sorted from simplest to most comp
 
 A simple but essential component for adding visual flair and functionality.
 
-* **Days 1-2:** Create a basic HTML `button` element and style it with CSS. Learn to change its color, padding, and border radius.
+* **Days 1-2:** Use Block Variations to Extend the button block.
 
-* **Days 3-4:** Add an icon from a library like Font Awesome or Material Icons. Position the icon correctly next to the button text.
+* **Days 3-4:** Use a custom icon selector.
 
-* **Days 5-6:** Implement hover and active states for the button. Change its background color or add a subtle shadow when the user interacts with it.
+* **Days 5-6:** Add settings for the icon, color, size, gap.
 
-* **Days 7-8:** Create an icon-only button and use a **tooltip** to provide text for accessibility. The tooltip should appear on hover.
+* **Days 7-8:** Implement on frontend.
 
-* **Days 9-10:** Make the button responsive. Ensure the button and icon scale correctly on different screen sizes without breaking the layout.
+* **Days 9-10:** Create a way to add custom icons.
 
 ### **2. Countdown Block** (Days 11-20)
 
