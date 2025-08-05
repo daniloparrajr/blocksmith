@@ -23,6 +23,71 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'button' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocksmith/button',
+		'version' => '0.1.0',
+		'title' => 'Button',
+		'category' => 'design',
+		'icon' => 'button',
+		'description' => 'A simple but essential component for adding visual flair and functionality.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'content' => array(
+				'type' => 'string',
+				'source' => 'html'
+			),
+			'url' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkTarget' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rel' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'blocksmith',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'buttons' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocksmith/buttons',
+		'version' => '0.1.0',
+		'title' => 'Buttons',
+		'category' => 'widgets',
+		'icon' => 'button',
+		'allowedBlocks' => array(
+			'blocksmith/button'
+		),
+		'description' => 'A simple but essential component for adding visual flair and functionality.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'blocksmith',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'countdown-block' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -54,28 +119,6 @@ return array(
 		'category' => 'widgets',
 		'icon' => 'smiley',
 		'description' => 'A visually rich component for displaying images.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'textdomain' => 'blocksmith',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
-	),
-	'icon-button' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'blocksmith/icon-button',
-		'version' => '0.1.0',
-		'title' => 'Icon Button',
-		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'A simple but essential component for adding visual flair and functionality.',
 		'example' => array(
 			
 		),

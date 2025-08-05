@@ -30,7 +30,7 @@ Here is the list of blocks I will be building, sorted from simplest to most comp
 
 A simple but essential component for adding visual flair and functionality.
 
-* **Days 1-2:** Use Block Variations to Extend the button block.
+* **Days 1-2:** Create parent buttons and child button block. Duplicate core button settings and attributes.
 
 * **Days 3-4:** Use a custom icon selector.
 

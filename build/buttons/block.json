@@ -1,11 +1,14 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "blocksmith/icon-button",
+  "name": "blocksmith/buttons",
   "version": "0.1.0",
-  "title": "Icon Button",
+  "title": "Buttons",
   "category": "widgets",
-  "icon": "smiley",
+  "icon": "button",
+  "allowedBlocks": [
+    "blocksmith/button"
+  ],
   "description": "A simple but essential component for adding visual flair and functionality.",
   "example": {},
   "supports": {
