@@ -27,6 +27,9 @@
 		"rel": {
 			"type": "string",
 			"default": ""
+		},
+		"textAlign": {
+			"type": "string"
 		}
 	},
 	"textdomain": "blocksmith",

@@ -54,6 +54,9 @@ return array(
 			'rel' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'blocksmith',

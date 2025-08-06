@@ -5,6 +5,8 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 
+import { InnerBlocks } from '@wordpress/block-editor';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing `style` keyword are bundled together. The code used
@@ -30,4 +32,5 @@ registerBlockType( metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
+	save: () => <InnerBlocks.Content />,
 } );
