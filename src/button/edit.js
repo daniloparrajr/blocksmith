@@ -6,24 +6,45 @@
 import { __ } from '@wordpress/i18n';
 
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * Internal dependencies
  */
+import { NEW_TAB_TARGET, NOFOLLOW_REL } from './constants';
+import { getUpdatedLinkAttributes } from './get-updated-link-attributes';
+
 import {
 	useBlockProps,
 	RichText,
-	BlockControls
+	BlockControls,
+	AlignmentControl,
+	LinkControl,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
 import {
 	ToolbarButton,
+	Popover
 } from '@wordpress/components';
+
+import {
+	useState,
+	useMemo,
+	useRef,
+	createInterpolateElement
+} from '@wordpress/element';
 
 import { link, linkOff } from '@wordpress/icons';
 
 import { displayShortcut } from '@wordpress/keycodes';
+
+import { useSelect } from '@wordpress/data';
+
+import {
+	getBlockBindingsSource,
+} from '@wordpress/blocks';
+
+import {
+	useMergeRefs
+} from '@wordpress/compose';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -33,6 +54,7 @@ import { displayShortcut } from '@wordpress/keycodes';
  */
 import './editor.scss';
 
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -41,13 +63,46 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit( { attributes, setAttributes } ) {
-	const { content, url } = attributes;
+export default function Edit( props ) {
+
+	const {
+		attributes,
+		setAttributes,
+		isSelected,
+		context
+	} = props;
+
+	const {
+		content,
+		url,
+		rel,
+		linkTarget,
+		textAlign,
+		metadata
+	} = attributes;
 
 	const isURLSet = !! url;
+	const [ isEditingURL, setIsEditingURL ] = useState( false );
+	const opensInNewTab = linkTarget === NEW_TAB_TARGET;
+	const nofollow = !! rel?.includes( NOFOLLOW_REL );
 
+	// Memoize link value to avoid overriding the LinkControl's internal state.
+	// This is a temporary fix. See https://github.com/WordPress/gutenberg/issues/51256.
+	const linkValue = useMemo(
+		() => ( { url, opensInNewTab, nofollow } ),
+		[ url, opensInNewTab, nofollow ]
+	);
 
-	const blockProps = useBlockProps();
+	const ref = useRef();
+	const richTextRef = useRef();
+
+	// Use internal state instead of a ref to make sure that the component
+	// re-renders when the popover's anchor updates.
+	const [ popoverAnchor, setPopoverAnchor ] = useState( null );
+
+	const blockProps = useBlockProps( {
+		ref: useMergeRefs( [ setPopoverAnchor, ref ] ),
+	} );
 
 	const buttonAllowedFormats = [
 		'core/bold',
@@ -69,15 +124,88 @@ export default function Edit( { attributes, setAttributes } ) {
 			linkTarget: "",
 			rel: "",
 		} );
+		setIsEditingURL( false );
 	}
 
 	const startEditing = ( event ) => {
 		event.preventDefault();
+		setIsEditingURL( true );
+	}
+
+	const LINK_SETTINGS = [
+		...LinkControl.DEFAULT_LINK_SETTINGS,
+		{
+			id: 'nofollow',
+			title: __( 'Mark as nofollow' ),
+		},
+	];
+
+	const {
+		createPageEntity,
+		userCanCreatePages,
+		lockUrlControls = false,
+	} = useSelect(
+		( select ) => {
+			if ( ! isSelected ) {
+				return {};
+			}
+
+			const _settings = select( blockEditorStore ).getSettings();
+
+			const blockBindingsSource = getBlockBindingsSource(
+				metadata?.bindings?.url?.source
+			);
+
+			return {
+				createPageEntity: _settings.__experimentalCreatePageEntity,
+				userCanCreatePages: _settings.__experimentalUserCanCreatePages,
+				lockUrlControls:
+					!! metadata?.bindings?.url &&
+					! blockBindingsSource?.canUserEditValue?.( {
+						select,
+						context,
+						args: metadata?.bindings?.url?.args,
+					} ),
+			};
+		},
+		[ context, isSelected, metadata?.bindings?.url ]
+	);
+
+	const createButtonText = ( searchTerm ) => {
+		return createInterpolateElement(
+			sprintf(
+				/* translators: %s: search term. */
+				__( 'Create page: <mark>%s</mark>' ),
+				searchTerm
+			),
+			{ mark: <mark /> }
+		);
+	}
+
+	async function handleCreate( pageTitle ) {
+		const page = await createPageEntity( {
+			title: pageTitle,
+			status: 'draft',
+		} );
+
+		return {
+			id: page.id,
+			type: page.type,
+			title: page.title.rendered,
+			url: page.link,
+			kind: 'post-type',
+		};
 	}
 
 	return (
 		<>
 			<BlockControls group="block">
+				<AlignmentControl
+					value={ textAlign }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { textAlign: nextAlign } );
+					} }
+				/>
 				<ToolbarButton
 					name="link"
 					icon={ ! isURLSet ? link : linkOff }
@@ -91,8 +219,52 @@ export default function Edit( { attributes, setAttributes } ) {
 					isActive={ isURLSet }
 				/>
 			</BlockControls>
+			{ isSelected &&
+				( isEditingURL || isURLSet ) && (
+					<Popover
+						placement="bottom"
+						onClose={ () => {
+							setIsEditingURL( false );
+							richTextRef.current?.focus();
+						} }
+						anchor={ popoverAnchor }
+						focusOnMount={ isEditingURL ? 'firstElement' : false }
+						__unstableSlotName="__unstable-block-tools-after"
+						shift
+					>
+						<LinkControl
+							value={ linkValue }
+							onChange={ ( {
+								 url: newURL,
+								 opensInNewTab: newOpensInNewTab,
+								 nofollow: newNofollow,
+								} ) =>
+								setAttributes(
+									getUpdatedLinkAttributes( {
+										rel,
+										url: newURL,
+										opensInNewTab: newOpensInNewTab,
+										nofollow: newNofollow,
+									} )
+								)
+							}
+							onRemove={ () => {
+								unlink();
+								richTextRef.current?.focus();
+							} }
+							forceIsEditingLink={ isEditingURL }
+							settings={ LINK_SETTINGS }
+							createSuggestion={
+								createPageEntity && handleCreate
+							}
+							withCreateSuggestion={ userCanCreatePages }
+							createSuggestionButtonText={ createButtonText }
+						/>
+					</Popover>
+				) }
 			<div { ...blockProps }>
 				<RichText
+					ref={ richTextRef }
 					tagName="a"
 					className="wp-block-button__link wp-element-button"
 					value={ content }
