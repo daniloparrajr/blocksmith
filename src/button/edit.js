@@ -69,7 +69,8 @@ export default function Edit( props ) {
 		attributes,
 		setAttributes,
 		isSelected,
-		context
+		context,
+		clientId
 	} = props;
 
 	const {
@@ -233,6 +234,7 @@ export default function Edit( props ) {
 						shift
 					>
 						<LinkControl
+							key={clientId}
 							value={ linkValue }
 							onChange={ ( {
 								 url: newURL,
