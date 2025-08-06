@@ -262,6 +262,7 @@ export default function Edit( props ) {
 						/>
 					</Popover>
 				) }
+
 			<div { ...blockProps }>
 				<RichText
 					ref={ richTextRef }
