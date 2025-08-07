@@ -17,6 +17,8 @@ import {
 	BlockControls,
 	AlignmentControl,
 	LinkControl,
+	InspectorControls,
+	PanelColorSettings,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
@@ -79,7 +81,9 @@ export default function Edit( props ) {
 		rel,
 		linkTarget,
 		textAlign,
-		metadata
+		metadata,
+		textColor,
+		backgroundColor,
 	} = attributes;
 
 	const isURLSet = !! url;
@@ -198,6 +202,27 @@ export default function Edit( props ) {
 		};
 	}
 
+	const onChangeTextColor = ( newTextColor ) => {
+		setAttributes( { textColor: newTextColor } );
+	}
+
+	const onChangeBackgroundColor = ( newBackgroundColor ) => {
+		setAttributes( { backgroundColor: newBackgroundColor } );
+	}
+
+	const colorSettingsDropDown = [
+		{
+			value: textColor,
+			onChange: onChangeTextColor,
+			label: __( 'Text', 'blocksmith' ),
+		},
+		{
+			value: backgroundColor,
+			onChange: onChangeBackgroundColor,
+			label: __( 'Background', 'blocksmith' ),
+		},
+	];
+
 	return (
 		<>
 			<BlockControls group="block">
@@ -264,7 +289,13 @@ export default function Edit( props ) {
 						/>
 					</Popover>
 				) }
-
+			<InspectorControls group="styles">
+				<PanelColorSettings
+					title={ __( 'Colour', 'multi-columns' ) }
+					initialOpen={ false }
+					colorSettings={ colorSettingsDropDown }
+				></PanelColorSettings>
+			</InspectorControls>
 			<div { ...blockProps }>
 				<RichText
 					ref={ richTextRef }

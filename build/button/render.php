@@ -4,7 +4,5 @@
  */
 ?>
 <div <?php echo get_block_wrapper_attributes(); ?>>
-	<a href="" class="wp-block-button__link wp-element-button">
-		<?php echo wp_kses_post( $content ); ?>
-	</a>
+	<a href="" class="wp-block-button__link wp-element-button"><?php echo wp_kses_post( $content ); ?></a>
 </div>

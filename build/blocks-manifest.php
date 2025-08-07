@@ -57,6 +57,21 @@ return array(
 			),
 			'textAlign' => array(
 				'type' => 'string'
+			),
+			'textColor' => array(
+				'type' => 'string'
+			),
+			'backgroundColor' => array(
+				'type' => 'string'
+			)
+		),
+		'selectors' => array(
+			'root' => '.wp-block-blocksmith-button .wp-block-button__link',
+			'color' => array(
+				'text' => '.wp-block-blocksmith-button .wp-block-button__link'
+			),
+			'typography' => array(
+				'writingMode' => '.wp-block-blocksmith-button'
 			)
 		),
 		'textdomain' => 'blocksmith',
