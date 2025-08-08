@@ -291,8 +291,7 @@ export default function Edit( props ) {
 				) }
 			<InspectorControls group="styles">
 				<PanelColorSettings
-					title={ __( 'Colour', 'multi-columns' ) }
-					initialOpen={ false }
+					title={ __( 'Color', 'multi-columns' ) }
 					colorSettings={ colorSettingsDropDown }
 				></PanelColorSettings>
 			</InspectorControls>
