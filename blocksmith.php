@@ -35,3 +35,33 @@ function blocksmith_block_init() {
 	wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 }
 add_action( 'init', 'blocksmith_block_init' );
+
+
+/**
+ * Enqueue Editor scripts and styles.
+ */
+function blocksmith_block_editor_assets(): void {
+	$asset_file = include plugin_dir_path( __FILE__ ) . 'build/button-icon.asset.php';
+
+	wp_enqueue_script(
+		'blocksmith-button-icon',
+		plugin_dir_url( __FILE__ ) . 'build/button-icon.js',
+		$asset_file['dependencies'],
+		$asset_file['version']
+	);
+
+	wp_enqueue_style(
+		'enable-button-icons-editor-styles',
+		plugin_dir_url( __FILE__ ) . 'build/button-icon-editor.css'
+	);
+
+	$store_asset_file = include plugin_dir_path( __FILE__ ) . 'build/store.asset.php';
+
+	wp_enqueue_script(
+		'blocksmith-store',
+		plugin_dir_url( __FILE__ ) . 'build/store.js',
+		$store_asset_file['dependencies'],
+		$store_asset_file['version']
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'blocksmith_block_editor_assets' );

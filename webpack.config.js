@@ -9,8 +9,10 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry(),
-		'button-icon-variation': './src/button-icon-variation/index.js',
-		'button-icon-variation-styles': './src/button-icon-variation/style.scss',
+		'store': './src/store/index.js',
+		'button-icon': './src/button-icon/index.js',
+		'button-icon-styles': './src/button-icon/style.scss',
+		'button-icon-editor': './src/button-icon/editor.scss',
 	},
 	plugins: [
 		// Very important! Include WP's plugin config or the

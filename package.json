@@ -18,5 +18,8 @@
 		"@wordpress/icons": "^10.27.0",
 		"@wordpress/scripts": "^30.20.0",
 		"webpack-remove-empty-scripts": "^1.1.1"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1"
 	}
 }
