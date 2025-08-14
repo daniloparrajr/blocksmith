@@ -41,6 +41,13 @@
 			"__experimentalDefaultControls": {
 				"fontSize": true
 			}
+		},
+		"spacing": {
+			"__experimentalSkipSerialization": true,
+			"padding": [ "horizontal", "vertical" ],
+			"__experimentalDefaultControls": {
+				"padding": true
+			}
 		}
 	},
 	"attributes": {

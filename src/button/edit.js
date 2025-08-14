@@ -25,6 +25,7 @@ import {
 	InspectorControls,
 	__experimentalUseColorProps as useColorProps,
 	getTypographyClassesAndStyles as useTypographyProps,
+	__experimentalGetSpacingClassesAndStyles as useSpacingProps,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
@@ -92,6 +93,7 @@ export default function Edit( props ) {
 
 	const colorProps = useColorProps( attributes );
 	const typographyProps = useTypographyProps( attributes );
+	const spacingProps = useSpacingProps( attributes );
 
 	const isURLSet = !! url;
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -298,6 +300,7 @@ export default function Edit( props ) {
 					style={ {
 						...colorProps.style,
 						...typographyProps.style,
+						...spacingProps.style,
 					} }
 					value={ content }
 					allowedFormats={ buttonAllowedFormats }

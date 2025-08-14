@@ -68,6 +68,16 @@ return array(
 				'__experimentalDefaultControls' => array(
 					'fontSize' => true
 				)
+			),
+			'spacing' => array(
+				'__experimentalSkipSerialization' => true,
+				'padding' => array(
+					'horizontal',
+					'vertical'
+				),
+				'__experimentalDefaultControls' => array(
+					'padding' => true
+				)
 			)
 		),
 		'attributes' => array(
