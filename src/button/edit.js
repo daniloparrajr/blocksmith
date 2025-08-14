@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import clsx from 'clsx';
+
+/**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
@@ -18,7 +23,7 @@ import {
 	AlignmentControl,
 	LinkControl,
 	InspectorControls,
-	PanelColorSettings,
+	__experimentalUseColorProps as useColorProps,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
@@ -81,10 +86,10 @@ export default function Edit( props ) {
 		rel,
 		linkTarget,
 		textAlign,
-		metadata,
-		textColor,
-		backgroundColor,
+		metadata
 	} = attributes;
+
+	const colorProps = useColorProps( attributes );
 
 	const isURLSet = !! url;
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -210,19 +215,6 @@ export default function Edit( props ) {
 		setAttributes( { backgroundColor: newBackgroundColor } );
 	}
 
-	const colorSettingsDropDown = [
-		{
-			value: textColor,
-			onChange: onChangeTextColor,
-			label: __( 'Text', 'blocksmith' ),
-		},
-		{
-			value: backgroundColor,
-			onChange: onChangeBackgroundColor,
-			label: __( 'Background', 'blocksmith' ),
-		},
-	];
-
 	return (
 		<>
 			<BlockControls group="block">
@@ -290,16 +282,19 @@ export default function Edit( props ) {
 					</Popover>
 				) }
 			<InspectorControls group="styles">
-				<PanelColorSettings
-					title={ __( 'Color', 'multi-columns' ) }
-					colorSettings={ colorSettingsDropDown }
-				></PanelColorSettings>
 			</InspectorControls>
 			<div { ...blockProps }>
 				<RichText
 					ref={ richTextRef }
 					tagName="a"
-					className="wp-block-button__link wp-element-button"
+					className={ clsx(
+						'wp-block-button__link',
+						'wp-element-button',
+						colorProps.className,
+					) }
+					style={ {
+						...colorProps.style,
+					} }
 					value={ content }
 					allowedFormats={ buttonAllowedFormats }
 					placeholder={ __( 'Add Text...' ) }

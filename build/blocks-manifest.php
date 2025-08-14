@@ -36,7 +36,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'color' => array(
+				'__experimentalSkipSerialization' => true,
+				'gradients' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => true,
+					'text' => true
+				)
+			)
 		),
 		'attributes' => array(
 			'content' => array(
@@ -56,12 +64,6 @@ return array(
 				'default' => ''
 			),
 			'textAlign' => array(
-				'type' => 'string'
-			),
-			'textColor' => array(
-				'type' => 'string'
-			),
-			'backgroundColor' => array(
 				'type' => 'string'
 			)
 		),

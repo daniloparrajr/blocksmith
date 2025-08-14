@@ -9,7 +9,15 @@
 	"description": "A simple but essential component for adding visual flair and functionality.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"__experimentalSkipSerialization": true,
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
 	},
 	"attributes": {
 		"content": {
@@ -29,12 +37,6 @@
 			"default": ""
 		},
 		"textAlign": {
-			"type": "string"
-		},
-		"textColor": {
-			"type": "string"
-		},
-		"backgroundColor": {
 			"type": "string"
 		}
 	},
