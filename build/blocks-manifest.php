@@ -44,6 +44,30 @@ return array(
 					'background' => true,
 					'text' => true
 				)
+			),
+			'typography' => array(
+				'__experimentalSkipSerialization' => array(
+					'fontSize',
+					'lineHeight',
+					'fontFamily',
+					'fontWeight',
+					'fontStyle',
+					'textTransform',
+					'textDecoration',
+					'letterSpacing'
+				),
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalWritingMode' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
 			)
 		),
 		'attributes' => array(

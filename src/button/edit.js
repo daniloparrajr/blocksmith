@@ -24,6 +24,7 @@ import {
 	LinkControl,
 	InspectorControls,
 	__experimentalUseColorProps as useColorProps,
+	getTypographyClassesAndStyles as useTypographyProps,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
@@ -90,6 +91,7 @@ export default function Edit( props ) {
 	} = attributes;
 
 	const colorProps = useColorProps( attributes );
+	const typographyProps = useTypographyProps( attributes );
 
 	const isURLSet = !! url;
 	const [ isEditingURL, setIsEditingURL ] = useState( false );
@@ -291,9 +293,11 @@ export default function Edit( props ) {
 						'wp-block-button__link',
 						'wp-element-button',
 						colorProps.className,
+						typographyProps.className,
 					) }
 					style={ {
 						...colorProps.style,
+						...typographyProps.style,
 					} }
 					value={ content }
 					allowedFormats={ buttonAllowedFormats }
