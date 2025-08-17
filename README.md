@@ -44,15 +44,15 @@ A simple but essential component for adding visual flair and functionality.
 
 A dynamic block that creates urgency.
 
-* **Days 11-12:** Build the basic HTML structure with separate elements for days, hours, minutes, and seconds.
+* **Days 11-12:** Add the date picker field and get the remaining days, hours, mins, secs.
 
-* **Days 13-14:** Use JavaScript to set a target date and time. Learn to calculate the difference between the current time and the target time.
+* **Days 13-14:** Add settings to toggle days unit, hours unit, and add zero format.
 
-* **Days 15-16:** Display the calculated time difference in the correct elements. Implement a `setInterval` function to update the numbers every second.
+* **Days 15-16:** Add settings to change labels and show separators.
 
-* **Days 17-18:** Add styling to make the numbers and labels visually appealing. Use CSS to create a countdown box layout.
+* **Days 17-18:** Add style settings for count item and number settings.
 
-* **Days 19-20:** Add logic to display a custom message or hide the block once the countdown reaches zero.
+* **Days 19-20:** Add style settings for label and container.
 
 ### **3. Progress Bar** (Days 21-30)
 
