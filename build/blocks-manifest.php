@@ -142,20 +142,26 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
-	'countdown-block' => array(
+	'countdown' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'blocksmith/countdown',
 		'version' => '0.1.0',
 		'title' => 'Countdown',
 		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'A dynamic block that creates urgency.',
+		'icon' => 'clock',
+		'description' => 'Display the number of days left until a chosen date to create urgency and prompt action.',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'attributes' => array(
+			'targetDateTime' => array(
+				'type' => 'string',
+				'default' => ''
+			)
 		),
 		'textdomain' => 'blocksmith',
 		'editorScript' => 'file:./index.js',

@@ -5,11 +5,17 @@
 	"version": "0.1.0",
 	"title": "Countdown",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "A dynamic block that creates urgency.",
+	"icon": "clock",
+	"description": "Display the number of days left until a chosen date to create urgency and prompt action.",
 	"example": {},
 	"supports": {
 		"html": false
+	},
+	"attributes": {
+		"targetDateTime": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"textdomain": "blocksmith",
 	"editorScript": "file:./index.js",
