@@ -4,6 +4,23 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-blocksmith {
-	border: 1px dotted #f00;
+.wp-block-blocksmith-countdown {
+	display: flex;
+	gap: 10px;
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__number {
+		font-size: 60px;
+		line-height: 1;
+	}
+
+	&__label {
+		font-size: 14px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
 }
