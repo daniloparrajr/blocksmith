@@ -161,6 +161,14 @@ return array(
 			'targetDateTime' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'displayDaysUnit' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'displayHoursUnit' => array(
+				'type' => 'boolean',
+				'default' => true
 			)
 		),
 		'textdomain' => 'blocksmith',

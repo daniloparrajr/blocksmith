@@ -2,28 +2,32 @@ import {useEffect, useState} from "@wordpress/element";
 
 import { getTimeLeft } from '../utils.js';
 
-const Countdown = ( { targetDateTime } ) => {
+const Countdown = ( { targetDateTime, displayDays, displayHours } ) => {
 
-	const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDateTime));
+	const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDateTime, displayDays, displayHours));
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setTimeLeft(getTimeLeft(targetDateTime));
+			setTimeLeft(getTimeLeft(targetDateTime, displayDays, displayHours));
 		}, 1000);
 
 		return () => clearInterval(timer); // cleanup
-	}, [targetDateTime]);
+	}, [targetDateTime, displayDays, displayHours]);
 
 	return (
 		<>
-		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--days">
-			<span className="wp-block-blocksmith-countdown__number">{ timeLeft.days ?? 0 }</span>
-			<span className="wp-block-blocksmith-countdown__label">Days</span>
-		</span>
-		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--hours">
-			<span className="wp-block-blocksmith-countdown__number">{ timeLeft.hours ?? 0 }</span>
-			<span className="wp-block-blocksmith-countdown__label">Hours</span>
-		</span>
+		{displayDays && (
+			<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--days">
+				<span className="wp-block-blocksmith-countdown__number">{ timeLeft.days ?? 0 }</span>
+				<span className="wp-block-blocksmith-countdown__label">Days</span>
+			</span>
+		)}
+		{displayHours && (
+			<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--hours">
+				<span className="wp-block-blocksmith-countdown__number">{ timeLeft.hours ?? 0 }</span>
+				<span className="wp-block-blocksmith-countdown__label">Hours</span>
+			</span>
+		)}
 		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--minutes">
 			<span className="wp-block-blocksmith-countdown__number">{ timeLeft.minutes ?? 0 }</span>
 			<span className="wp-block-blocksmith-countdown__label">Minutes</span>

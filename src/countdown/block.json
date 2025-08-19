@@ -15,6 +15,14 @@
 		"targetDateTime": {
 			"type": "string",
 			"default": ""
+		},
+		"displayDaysUnit": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayHoursUnit": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "blocksmith",

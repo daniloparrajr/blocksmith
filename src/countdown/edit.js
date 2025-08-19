@@ -10,8 +10,9 @@ import {
  * Components dependencies.
  */
 import {
+	PanelBody,
 	DateTimePicker,
-	PanelBody
+	ToggleControl
 } from '@wordpress/components';
 
 /**
@@ -28,14 +29,26 @@ export default function Edit( props ) {
 	} = props;
 
 	let {
-		targetDateTime
+		targetDateTime,
+		displayDaysUnit,
+		displayHoursUnit
 	} = attributes;
 
 	if ( ! targetDateTime ) {
 		targetDateTime = new Date( targetDateTime );
 	}
+
 	const onSaveTargetDateTime = ( newTargetDateTime ) => {
 		setAttributes({ targetDateTime: newTargetDateTime });
+	}
+
+	const onChangeDisplayDaysUnit = () => {
+		const newDisplayDaysUnit = !displayDaysUnit;
+		setAttributes({ displayDaysUnit: newDisplayDaysUnit });
+
+		if ( newDisplayDaysUnit ) {
+			setAttributes({ displayHoursUnit: true });
+		}
 	}
 
 	return (
@@ -47,10 +60,28 @@ export default function Edit( props ) {
 						onChange={ onSaveTargetDateTime }
 						is12Hour={ true }
 					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label="Display Days Unit"
+						checked={displayDaysUnit}
+						onChange={ onChangeDisplayDaysUnit }
+					/>
+					{!displayDaysUnit ? (
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label="Display Seconds Unit"
+								checked={displayHoursUnit}
+								onChange={() => setAttributes({ displayHoursUnit: !displayHoursUnit })}
+							/>
+						) : null}
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps() }>
-				<Countdown targetDateTime={targetDateTime}  />
+				<Countdown
+					targetDateTime={targetDateTime}
+					displayDays={displayDaysUnit}
+					displayHours={displayHoursUnit}
+				/>
 			</div>
 		</>
 	);
