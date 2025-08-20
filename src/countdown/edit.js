@@ -41,6 +41,7 @@ export default function Edit( props ) {
 		hoursLabel,
 		minutesLabel,
 		secondsLabel,
+		showSeparator,
 	} = attributes;
 
 	if ( ! targetDateTime ) {
@@ -82,6 +83,12 @@ export default function Edit( props ) {
 								onChange={() => setAttributes({ displayHoursUnit: !displayHoursUnit })}
 							/>
 						) : null}
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label="Show Separators"
+						checked={showSeparator}
+						onChange={ () => setAttributes({ showSeparator: !showSeparator }) }
+					/>
 				</PanelBody>
 				<PanelBody title="Labels" initialOpen={ false }>
 					<TextControl
@@ -133,6 +140,7 @@ export default function Edit( props ) {
 						minutes: minutesLabel,
 						seconds: secondsLabel,
 					}}
+					showSeparator={showSeparator}
 				/>
 			</div>
 		</>

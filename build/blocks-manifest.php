@@ -185,6 +185,10 @@ return array(
 			'secondsLabel' => array(
 				'type' => 'string',
 				'default' => 'Seconds'
+			),
+			'showSeparator' => array(
+				'type' => 'boolean',
+				'default' => true
 			)
 		),
 		'textdomain' => 'blocksmith',

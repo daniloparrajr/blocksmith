@@ -2,7 +2,7 @@ import {useEffect, useState} from "@wordpress/element";
 
 import { getTimeLeft } from '../utils.js';
 
-const Countdown = ( { targetDateTime, displayDays, displayHours, labels } ) => {
+const Countdown = ( { targetDateTime, displayDays, displayHours, labels, showSeparator = true } ) => {
 
 	const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDateTime, displayDays, displayHours));
 
@@ -22,16 +22,19 @@ const Countdown = ( { targetDateTime, displayDays, displayHours, labels } ) => {
 				{labels.days ? (<span className="wp-block-blocksmith-countdown__label">{ labels.days }</span>) : null}
 			</span>
 		)}
+		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
 		{displayHours && (
 			<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--hours">
 				<span className="wp-block-blocksmith-countdown__number">{ timeLeft.hours ?? 0 }</span>
 				{labels.hours ? (<span className="wp-block-blocksmith-countdown__label">{ labels.hours }</span>) : null}
 			</span>
 		)}
+		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
 		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--minutes">
 			<span className="wp-block-blocksmith-countdown__number">{ timeLeft.minutes ?? 0 }</span>
 			{labels.minutes ? (<span className="wp-block-blocksmith-countdown__label">{ labels.minutes }</span>) : null}
 		</span>
+		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
 		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--seconds">
 			<span className="wp-block-blocksmith-countdown__number">{ timeLeft.seconds ?? 0 }</span>
 			{labels.seconds ? (<span className="wp-block-blocksmith-countdown__label">{ labels.seconds }</span>) : null}

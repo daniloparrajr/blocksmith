@@ -6,6 +6,7 @@
 
 .wp-block-blocksmith-countdown {
 	display: flex;
+	align-items: center;
 	gap: 10px;
 
 	&__item {
@@ -22,5 +23,9 @@
 		font-size: 14px;
 		letter-spacing: 1px;
 		text-transform: uppercase;
+	}
+
+	&__separator {
+		font-size: 26px;
 	}
 }

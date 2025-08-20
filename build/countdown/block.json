@@ -39,6 +39,10 @@
     "secondsLabel": {
       "type": "string",
       "default": "Seconds"
+    },
+    "showSeparator": {
+      "type": "boolean",
+      "default": true
     }
   },
   "textdomain": "blocksmith",
