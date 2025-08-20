@@ -43,6 +43,10 @@
     "showSeparator": {
       "type": "boolean",
       "default": true
+    },
+    "prependZero": {
+      "type": "boolean",
+      "default": true
     }
   },
   "textdomain": "blocksmith",

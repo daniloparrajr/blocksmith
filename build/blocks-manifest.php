@@ -189,6 +189,10 @@ return array(
 			'showSeparator' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'prependZero' => array(
+				'type' => 'boolean',
+				'default' => true
 			)
 		),
 		'textdomain' => 'blocksmith',

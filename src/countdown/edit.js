@@ -42,6 +42,7 @@ export default function Edit( props ) {
 		minutesLabel,
 		secondsLabel,
 		showSeparator,
+		prependZero
 	} = attributes;
 
 	if ( ! targetDateTime ) {
@@ -88,6 +89,12 @@ export default function Edit( props ) {
 						label="Show Separators"
 						checked={showSeparator}
 						onChange={ () => setAttributes({ showSeparator: !showSeparator }) }
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label="Prepend Zero"
+						checked={prependZero}
+						onChange={ () => setAttributes({ prependZero: !prependZero }) }
 					/>
 				</PanelBody>
 				<PanelBody title="Labels" initialOpen={ false }>
@@ -141,6 +148,7 @@ export default function Edit( props ) {
 						seconds: secondsLabel,
 					}}
 					showSeparator={showSeparator}
+					prependZero={prependZero}
 				/>
 			</div>
 		</>

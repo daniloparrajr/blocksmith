@@ -11,6 +11,18 @@ export const getTimeLeft = ( future, displayDays = true, displayHours = true ) =
 
 	const days = differenceInDays(endDate, startDate);
 
+	if ( ! hours ) {
+		hours = 0;
+	}
+
+	if ( ! minutes ) {
+		minutes = 0;
+	}
+
+	if ( ! seconds ) {
+		seconds = 0;
+	}
+
 	if ( ! displayDays ) {
 		hours = differenceInHours( endDate, startDate );
 	}
