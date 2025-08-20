@@ -169,6 +169,22 @@ return array(
 			'displayHoursUnit' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'daysLabel' => array(
+				'type' => 'string',
+				'default' => 'Days'
+			),
+			'hoursLabel' => array(
+				'type' => 'string',
+				'default' => 'Hours'
+			),
+			'minutesLabel' => array(
+				'type' => 'string',
+				'default' => 'Minutes'
+			),
+			'secondsLabel' => array(
+				'type' => 'string',
+				'default' => 'Seconds'
 			)
 		),
 		'textdomain' => 'blocksmith',

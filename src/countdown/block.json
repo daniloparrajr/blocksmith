@@ -23,6 +23,22 @@
 		"displayHoursUnit": {
 			"type": "boolean",
 			"default": true
+		},
+		"daysLabel": {
+			"type": "string",
+			"default": "Days"
+		},
+		"hoursLabel": {
+			"type": "string",
+			"default": "Hours"
+		},
+		"minutesLabel": {
+			"type": "string",
+			"default": "Minutes"
+		},
+		"secondsLabel": {
+			"type": "string",
+			"default": "Seconds"
 		}
 	},
 	"textdomain": "blocksmith",

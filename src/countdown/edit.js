@@ -12,8 +12,13 @@ import {
 import {
 	PanelBody,
 	DateTimePicker,
-	ToggleControl
+	ToggleControl,
+	TextControl
 } from '@wordpress/components';
+
+import {
+	addDays
+} from 'date-fns';
 
 /**
  * Internal dependencies.
@@ -31,17 +36,20 @@ export default function Edit( props ) {
 	let {
 		targetDateTime,
 		displayDaysUnit,
-		displayHoursUnit
+		displayHoursUnit,
+		daysLabel,
+		hoursLabel,
+		minutesLabel,
+		secondsLabel,
 	} = attributes;
 
 	if ( ! targetDateTime ) {
-		targetDateTime = new Date( targetDateTime );
+		targetDateTime = addDays(new Date(), 1);
 	}
 
 	const onSaveTargetDateTime = ( newTargetDateTime ) => {
 		setAttributes({ targetDateTime: newTargetDateTime });
 	}
-
 	const onChangeDisplayDaysUnit = () => {
 		const newDisplayDaysUnit = !displayDaysUnit;
 		setAttributes({ displayDaysUnit: newDisplayDaysUnit });
@@ -75,12 +83,56 @@ export default function Edit( props ) {
 							/>
 						) : null}
 				</PanelBody>
+				<PanelBody title="Labels" initialOpen={ false }>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label="Days"
+						help="Update the default days label."
+						onChange={( newDaysLabel ) => setAttributes({ daysLabel: newDaysLabel })}
+						placeholder="Days"
+						value={daysLabel}
+					/>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label="Hours"
+						help="Update the default hours label."
+						onChange={( newHoursLabel ) => setAttributes({ hoursLabel: newHoursLabel })}
+						placeholder="Hours"
+						value={hoursLabel}
+					/>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label="Minutes"
+						help="Update the default minutes label."
+						onChange={( newMinutesLabel ) => setAttributes({ minutesLabel: newMinutesLabel })}
+						placeholder="Minutes"
+						value={minutesLabel}
+					/>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label="Seconds"
+						help="Update the default seconds label."
+						onChange={( newSecondsLabel ) => setAttributes({ secondsLabel: newSecondsLabel })}
+						placeholder="Seconds"
+						value={secondsLabel}
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps() }>
 				<Countdown
 					targetDateTime={targetDateTime}
 					displayDays={displayDaysUnit}
 					displayHours={displayHoursUnit}
+					labels={{
+						days: daysLabel,
+						hours: hoursLabel,
+						minutes: minutesLabel,
+						seconds: secondsLabel,
+					}}
 				/>
 			</div>
 		</>
