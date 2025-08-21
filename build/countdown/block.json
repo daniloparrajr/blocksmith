@@ -9,7 +9,20 @@
   "description": "Display the number of days left until a chosen date to create urgency and prompt action.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
   },
   "attributes": {
     "targetDateTime": {
@@ -47,6 +60,9 @@
     "prependZero": {
       "type": "boolean",
       "default": true
+    },
+    "countItemFontFamily": {
+      "type": "string"
     }
   },
   "textdomain": "blocksmith",

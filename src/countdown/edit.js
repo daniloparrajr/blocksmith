@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
 	useBlockProps,
+	useSettings,
 	__experimentalFontFamilyControl  as FontFamilyControl
 } from '@wordpress/block-editor';
 
@@ -47,20 +48,15 @@ export default function Edit( props ) {
 		minutesLabel,
 		secondsLabel,
 		showSeparator,
-		prependZero
+		prependZero,
+		countItemFontFamily
 	} = attributes;
 
 	if ( ! targetDateTime ) {
 		targetDateTime = addDays(new Date(), 1);
 	}
 
-	const fontFamilies = useSelect(( select ) => {
-		const settings = select('core/block-editor').getSettings();
-
-		return settings?.typography ?? [];
-	}, []);
-
-	console.log(fontFamilies);
+	const [ blockLevelFontFamilies ] = useSettings( 'typography.fontFamilies' );
 
 	const onSaveTargetDateTime = ( newTargetDateTime ) => {
 		setAttributes({ targetDateTime: newTargetDateTime });
@@ -73,6 +69,8 @@ export default function Edit( props ) {
 			setAttributes({ displayHoursUnit: true });
 		}
 	}
+
+	console.log(blockLevelFontFamilies.theme);
 
 	return (
 		<>
@@ -154,8 +152,9 @@ export default function Edit( props ) {
 					<FontFamilyControl
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
-						fontFamilies={fontFamilies}
-						onChange={() => {}}
+						fontFamilies={blockLevelFontFamilies.theme}
+						onChange={(newFontFamily) => setAttributes({ countItemFontFamily: newFontFamily })}
+						value={countItemFontFamily}
 					/>
 				</PanelBody>
 			</InspectorControls>

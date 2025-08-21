@@ -155,7 +155,20 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'color' => array(
+				'background' => true,
+				'text' => true,
+				'gradients' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true
+			)
 		),
 		'attributes' => array(
 			'targetDateTime' => array(
@@ -193,6 +206,9 @@ return array(
 			'prependZero' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'countItemFontFamily' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'blocksmith',
