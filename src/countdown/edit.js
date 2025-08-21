@@ -1,10 +1,15 @@
+import { __ } from '@wordpress/i18n';
+
 /**
  * Block editor dependencies.
  */
 import {
 	InspectorControls,
-	useBlockProps
+	useBlockProps,
+	__experimentalFontFamilyControl  as FontFamilyControl
 } from '@wordpress/block-editor';
+
+import { useSelect  } from '@wordpress/data';
 
 /**
  * Components dependencies.
@@ -48,6 +53,14 @@ export default function Edit( props ) {
 	if ( ! targetDateTime ) {
 		targetDateTime = addDays(new Date(), 1);
 	}
+
+	const fontFamilies = useSelect(( select ) => {
+		const settings = select('core/block-editor').getSettings();
+
+		return settings?.typography ?? [];
+	}, []);
+
+	console.log(fontFamilies);
 
 	const onSaveTargetDateTime = ( newTargetDateTime ) => {
 		setAttributes({ targetDateTime: newTargetDateTime });
@@ -133,6 +146,16 @@ export default function Edit( props ) {
 						onChange={( newSecondsLabel ) => setAttributes({ secondsLabel: newSecondsLabel })}
 						placeholder="Seconds"
 						value={secondsLabel}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<InspectorControls group="styles">
+				<PanelBody title="Count item" initialOpen={ false }>
+					<FontFamilyControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						fontFamilies={fontFamilies}
+						onChange={() => {}}
 					/>
 				</PanelBody>
 			</InspectorControls>
