@@ -17,30 +17,38 @@ const Countdown = ( { targetDateTime, displayDays, displayHours, labels, showSep
 	return (
 		<>
 		{displayDays && (
-			<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--days">
-				<span className="wp-block-blocksmith-countdown__number">
-					{ prependZero ? String(timeLeft.days).padStart(2, "0") : timeLeft.days }
+			<>
+				<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--days">
+					<span className="wp-block-blocksmith-countdown__number">
+						{ prependZero ? String(timeLeft.days).padStart(2, "0") : timeLeft.days }
+					</span>
+					{labels.days ? (<span className="wp-block-blocksmith-countdown__label">{ labels.days }</span>) : null}
 				</span>
-				{labels.days ? (<span className="wp-block-blocksmith-countdown__label">{ labels.days }</span>) : null}
-			</span>
+				{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
+			</>
 		)}
-		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
+
 		{displayHours && (
-			<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--hours">
-				<span className="wp-block-blocksmith-countdown__number">
-					{ prependZero ? String(timeLeft.hours).padStart(2, "0") : timeLeft.hours }
+			<>
+				<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--hours">
+					<span className="wp-block-blocksmith-countdown__number">
+						{ prependZero ? String(timeLeft.hours).padStart(2, "0") : timeLeft.hours }
+					</span>
+					{labels.hours ? (<span className="wp-block-blocksmith-countdown__label">{ labels.hours }</span>) : null}
 				</span>
-				{labels.hours ? (<span className="wp-block-blocksmith-countdown__label">{ labels.hours }</span>) : null}
-			</span>
+				{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
+			</>
 		)}
-		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
+
 		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--minutes">
 			<span className="wp-block-blocksmith-countdown__number">
 				{ prependZero ? String(timeLeft.minutes).padStart(2, "0") : timeLeft.minutes }
 			</span>
 			{labels.minutes ? (<span className="wp-block-blocksmith-countdown__label">{ labels.minutes }</span>) : null}
 		</span>
+
 		{ showSeparator && (<span className="wp-block-blocksmith-countdown__separator">:</span>) }
+
 		<span className="wp-block-blocksmith-countdown__item wp-block-blocksmith-countdown__item--seconds">
 			<span className="wp-block-blocksmith-countdown__number">
 			{ prependZero ? String(timeLeft.seconds).padStart(2, "0") : timeLeft.seconds }
