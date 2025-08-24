@@ -164,7 +164,17 @@ return array(
 			),
 			'typography' => array(
 				'fontSize' => true,
-				'lineHeight' => true
+				'lineHeight' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalWritingMode' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
 			),
 			'spacing' => array(
 				'padding' => true,
