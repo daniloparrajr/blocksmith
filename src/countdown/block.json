@@ -10,6 +10,7 @@
 	"example": {},
 	"supports": {
 		"html": false,
+		"align": true,
 		"color": {
 			"background": true,
 			"text": true,

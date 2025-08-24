@@ -156,6 +156,7 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
+			'align' => true,
 			'color' => array(
 				'background' => true,
 				'text' => true,
