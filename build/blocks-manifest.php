@@ -220,6 +220,10 @@ return array(
 			),
 			'countItemFontFamily' => array(
 				'type' => 'string'
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'center'
 			)
 		),
 		'textdomain' => 'blocksmith',

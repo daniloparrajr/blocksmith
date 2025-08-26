@@ -4,13 +4,14 @@ import { __ } from '@wordpress/i18n';
  * Block editor dependencies.
  */
 import {
+	BlockControls,
 	InspectorControls,
 	useBlockProps,
 	useSettings,
+	AlignmentToolbar,
 	__experimentalFontFamilyControl  as FontFamilyControl
 } from '@wordpress/block-editor';
 
-import { useSelect  } from '@wordpress/data';
 
 /**
  * Components dependencies.
@@ -49,7 +50,8 @@ export default function Edit( props ) {
 		secondsLabel,
 		showSeparator,
 		prependZero,
-		countItemFontFamily
+		countItemFontFamily,
+		alignment
 	} = attributes;
 
 	if ( ! targetDateTime ) {
@@ -70,10 +72,21 @@ export default function Edit( props ) {
 		}
 	}
 
-	console.log(blockLevelFontFamilies.theme);
+	const blockClassNames = [];
+
+	blockClassNames.push( `has-text-align-${ alignment }` );
 
 	return (
 		<>
+			<BlockControls>
+				<AlignmentToolbar
+					value={alignment}
+					onChange={(newAlignment) => {
+						console.log(newAlignment);
+						setAttributes({ alignment: newAlignment });
+					}}
+				/>
+			</BlockControls>
 			<InspectorControls>
 				<PanelBody>
 					<DateTimePicker
@@ -158,7 +171,7 @@ export default function Edit( props ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div { ...useBlockProps() }>
+			<div { ...useBlockProps( { className: blockClassNames.join( ' ' ) } ) }>
 				<Countdown
 					targetDateTime={targetDateTime}
 					displayDays={displayDaysUnit}

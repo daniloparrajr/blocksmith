@@ -74,6 +74,10 @@
 		},
 		"countItemFontFamily": {
 			"type": "string"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
 		}
 	},
 	"textdomain": "blocksmith",
