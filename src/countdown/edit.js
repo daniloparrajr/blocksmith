@@ -8,10 +8,12 @@ import {
 	InspectorControls,
 	useBlockProps,
 	useSettings,
-	AlignmentToolbar,
-	__experimentalFontFamilyControl  as FontFamilyControl
+	AlignmentToolbar
 } from '@wordpress/block-editor';
 
+import {
+	FontFamilyControl
+} from '../controls';
 
 /**
  * Components dependencies.
@@ -82,7 +84,6 @@ export default function Edit( props ) {
 				<AlignmentToolbar
 					value={alignment}
 					onChange={(newAlignment) => {
-						console.log(newAlignment);
 						setAttributes({ alignment: newAlignment });
 					}}
 				/>
@@ -163,12 +164,12 @@ export default function Edit( props ) {
 			<InspectorControls group="styles">
 				<PanelBody title="Count item" initialOpen={ false }>
 					<FontFamilyControl
-						__next40pxDefaultSize
-						__nextHasNoMarginBottom
+						label={__("Font Family", "blocksmith")}
 						fontFamilies={blockLevelFontFamilies.theme}
-						onChange={(newFontFamily) => setAttributes({ countItemFontFamily: newFontFamily })}
+						onChange={(newFontFamily) => setAttributes({ countItemFontFamily: newFontFamily.selectedItem.key })}
 						value={countItemFontFamily}
 					/>
+					<div style={{marginBottom: '200px'}}></div>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps( { className: blockClassNames.join( ' ' ) } ) }>
