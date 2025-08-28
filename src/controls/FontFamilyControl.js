@@ -24,6 +24,10 @@ const FontFamilyControl = ({ label, value, onChange, fontFamilies }) => {
 	];
 
 	const getValueByKey = ( key, options ) => {
+		if ( ! key ) {
+			return null;
+		}
+
 		return options.find( ( { key: optionKey } ) => optionKey === key );
 	}
 

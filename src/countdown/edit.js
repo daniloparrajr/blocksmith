@@ -166,7 +166,12 @@ export default function Edit( props ) {
 					<FontFamilyControl
 						label={__("Font Family", "blocksmith")}
 						fontFamilies={blockLevelFontFamilies.theme}
-						onChange={(newFontFamily) => setAttributes({ countItemFontFamily: newFontFamily.selectedItem.key })}
+						onChange={(newFontFamily) => {
+							setAttributes({
+								countItemFontFamily: 'default' === newFontFamily.selectedItem.key
+								? newFontFamily.selectedItem.key : undefined
+							});
+						}}
 						value={countItemFontFamily}
 					/>
 					<div style={{marginBottom: '200px'}}></div>
