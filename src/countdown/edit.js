@@ -22,7 +22,8 @@ import {
 	PanelBody,
 	DateTimePicker,
 	ToggleControl,
-	TextControl
+	TextControl,
+	FontSizePicker
 } from '@wordpress/components';
 
 import {
@@ -52,8 +53,9 @@ export default function Edit( props ) {
 		secondsLabel,
 		showSeparator,
 		prependZero,
-		countItemFontFamily,
-		alignment
+		alignment,
+		labelFontFamily,
+		labelFontSize
 	} = attributes;
 
 	if ( ! targetDateTime ) {
@@ -61,6 +63,13 @@ export default function Edit( props ) {
 	}
 
 	const [ blockLevelFontFamilies ] = useSettings( 'typography.fontFamilies' );
+	let [ fontSizes ] = useSettings( 'typography.fontSizes' );
+	const [ fontSizeUnits ] = useSettings( 'typography.units' );
+
+	const getFontSizeValue = ( fontSizeValue ) => {
+		const preset = fontSizes.find( ( font ) => font.slug === fontSizeValue );
+		return preset ? preset.size : fontSizeValue;
+	}
 
 	const onSaveTargetDateTime = ( newTargetDateTime ) => {
 		setAttributes({ targetDateTime: newTargetDateTime });
@@ -162,17 +171,30 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title="Count item" initialOpen={ false }>
+				<PanelBody title="Labels" initialOpen={ false }>
 					<FontFamilyControl
 						label={__("Font Family", "blocksmith")}
 						fontFamilies={blockLevelFontFamilies.theme}
 						onChange={(newFontFamily) => {
 							setAttributes({
-								countItemFontFamily: 'default' === newFontFamily.selectedItem.key
+								labelFontFamily: 'default' === newFontFamily.selectedItem.key
 								? newFontFamily.selectedItem.key : undefined
 							});
 						}}
-						value={countItemFontFamily}
+						value={labelFontFamily}
+					/>
+					<FontSizePicker
+						__next40pxDefaultSize
+						fallbackFontSize={0}
+						units={fontSizeUnits}
+						fontSizes={fontSizes}
+						value={getFontSizeValue(labelFontSize)}
+						onChange={(newFontSize, selectedFontsize) => {
+							setAttributes({
+								labelFontSize: selectedFontsize
+									? selectedFontsize.slug : newFontSize
+							});
+						}}
 					/>
 					<div style={{marginBottom: '200px'}}></div>
 				</PanelBody>

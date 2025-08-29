@@ -240,12 +240,15 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			),
-			'countItemFontFamily' => array(
-				'type' => 'string'
-			),
 			'alignment' => array(
 				'type' => 'string',
 				'default' => 'center'
+			),
+			'labelFontFamily' => array(
+				'type' => 'string'
+			),
+			'labelFontSize' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'blocksmith',

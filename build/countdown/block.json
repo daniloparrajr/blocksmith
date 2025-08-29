@@ -72,12 +72,15 @@
       "type": "boolean",
       "default": true
     },
-    "countItemFontFamily": {
-      "type": "string"
-    },
     "alignment": {
       "type": "string",
       "default": "center"
+    },
+    "labelFontFamily": {
+      "type": "string"
+    },
+    "labelFontSize": {
+      "type": "string"
     }
   },
   "textdomain": "blocksmith",
