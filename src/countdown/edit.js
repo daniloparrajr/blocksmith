@@ -12,7 +12,8 @@ import {
 } from '@wordpress/block-editor';
 
 import {
-	FontFamilyControl
+	FontFamilyControl,
+	DateTimePickerControl
 } from '../controls';
 
 /**
@@ -99,8 +100,9 @@ export default function Edit( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody>
-					<DateTimePicker
-						currentDate={ targetDateTime }
+					<DateTimePickerControl
+						label={ __( 'Target Date & Time' ) }
+						value={ targetDateTime }
 						onChange={ onSaveTargetDateTime }
 						is12Hour={ true }
 					/>
