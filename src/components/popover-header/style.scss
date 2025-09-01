@@ -1,0 +1,16 @@
+.bs-popover-header {
+	display: flex;
+	gap: calc(4px * 2);
+	align-items: center;
+	margin-bottom: 16px;
+
+	&__title {
+		color: var(--wp-components-color-foreground, #1e1e1e);
+		font-size: calc((13 / 13) * 13px);
+		margin: 0;
+	}
+
+	&__action {
+		margin-left: auto;
+	}
+}
