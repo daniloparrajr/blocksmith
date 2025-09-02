@@ -18,7 +18,7 @@ import { format } from 'date-fns';
 
 import './style.scss';
 
-const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate }) => {
+const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate, onClose }) => {
 	// Format the date using the specified tokens
 	const formattedDate = format(new Date( value ), "MMMM d, yyyy h:mm a 'UTC+0'");
 
@@ -34,6 +34,7 @@ const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate
 					"offset": 36,
 					"placement": "left-start",
 					"shift": true,
+					"onClose": onClose
 				}}
 				renderToggle={({ isOpen, onToggle }) => (
 					<Button
@@ -45,7 +46,7 @@ const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate
 						{formattedDate ? formattedDate : 'Select Date & Time'}
 					</Button>
 				)}
-				renderContent={() => (
+				renderContent={( { onClose } ) => (
 					<>
 						<PopoverHeader
 							title={ label }
@@ -57,9 +58,7 @@ const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate
 									}
 								}
 							]}
-							onClose={() => {
-								console.log('close');
-							}}
+							onClose={ onClose }
 						/>
 						<DateTimePicker
 							currentDate={ value }
