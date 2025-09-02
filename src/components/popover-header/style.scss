@@ -7,10 +7,6 @@
 	&__title {
 		color: var(--wp-components-color-foreground, #1e1e1e);
 		font-size: calc((13 / 13) * 13px);
-		margin: 0;
-	}
-
-	&__action {
-		margin-left: auto;
+		margin: 0 auto 0 0;
 	}
 }

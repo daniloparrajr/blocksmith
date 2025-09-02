@@ -8,6 +8,8 @@ import {
 	DateTimePicker
 } from '@wordpress/components';
 
+import { __ } from '@wordpress/i18n';
+
 import {
 	PopoverHeader,
 } from '../../components';
@@ -16,20 +18,9 @@ import { format } from 'date-fns';
 
 import './style.scss';
 
-const DateTimePickerControl = ({ label, value, onChange, is12Hour }) => {
+const DateTimePickerControl = ({ label, value, onChange, is12Hour, isInvalidDate }) => {
 	// Format the date using the specified tokens
 	const formattedDate = format(new Date( value ), "MMMM d, yyyy h:mm a 'UTC+0'");
-
-	/**
-	 * Function to disable past dates.
-	 * It's passed to the isInvalidDate prop of the DateTimePicker.
-	 *
-	 * @param {Date} date The date to check.
-	 * @return {boolean} True if the date is in the past, false otherwise.
-	 */
-	const isInvalidDate = ( date ) => {
-		return date < new Date();
-	};
 
 	return (
 		<BaseControl
@@ -58,6 +49,17 @@ const DateTimePickerControl = ({ label, value, onChange, is12Hour }) => {
 					<>
 						<PopoverHeader
 							title={ label }
+							actions={[
+								{
+									"label": __( "Now", "blocksmith" ),
+									"onClick": () => {
+										onChange( new Date() );
+									}
+								}
+							]}
+							onClose={() => {
+								console.log('close');
+							}}
 						/>
 						<DateTimePicker
 							currentDate={ value }
