@@ -13,7 +13,8 @@ import {
 
 import {
 	FontFamilyControl,
-	DateTimePickerControl
+	DateTimePickerControl,
+	ColorPickerControl
 } from '../../controls';
 
 /**
@@ -21,7 +22,6 @@ import {
  */
 import {
 	PanelBody,
-	DateTimePicker,
 	ToggleControl,
 	TextControl,
 	FontSizePicker
@@ -56,7 +56,8 @@ export default function Edit( props ) {
 		prependZero,
 		alignment,
 		labelFontFamily,
-		labelFontSize
+		labelFontSize,
+		labelColor,
 	} = attributes;
 
 	if ( ! targetDateTime ) {
@@ -185,32 +186,42 @@ export default function Edit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title="Labels" initialOpen={ false }>
-					<FontFamilyControl
-						label={__("Font Family", "blocksmith")}
-						fontFamilies={blockLevelFontFamilies.theme}
-						onChange={(newFontFamily) => {
-							setAttributes({
-								labelFontFamily: 'default' === newFontFamily.selectedItem.key
-								? newFontFamily.selectedItem.key : undefined
-							});
-						}}
-						value={labelFontFamily}
-					/>
-					<FontSizePicker
-						__next40pxDefaultSize
-						fallbackFontSize={0}
-						units={fontSizeUnits}
-						fontSizes={fontSizes}
-						value={getFontSizeValue(labelFontSize)}
-						onChange={(newFontSize, selectedFontsize) => {
-							setAttributes({
-								labelFontSize: selectedFontsize
-									? selectedFontsize.slug : newFontSize
-							});
-						}}
-					/>
+				<PanelBody title="Label typography" initialOpen={ false }>
+					{/* TODO: find a better way to add spacing between fields */}
+					<div style={{ "display": "grid", "gap": "16px" }}>
+						<FontFamilyControl
+							label={__("Font Family", "blocksmith")}
+							fontFamilies={blockLevelFontFamilies.theme}
+							onChange={(newFontFamily) => {
+								setAttributes({
+									labelFontFamily: 'default' === newFontFamily.selectedItem.key
+										? newFontFamily.selectedItem.key : undefined
+								});
+							}}
+							value={labelFontFamily}
+						/>
+						<FontSizePicker
+							__next40pxDefaultSize
+							fallbackFontSize={0}
+							units={fontSizeUnits}
+							fontSizes={fontSizes}
+							value={getFontSizeValue(labelFontSize)}
+							onChange={(newFontSize, selectedFontsize) => {
+								setAttributes({
+									labelFontSize: selectedFontsize
+										? selectedFontsize.slug : newFontSize
+								});
+							}}
+						/>
+					</div>
 					<div style={{marginBottom: '200px'}}></div>
+				</PanelBody>
+				<PanelBody title="Label color" initialOpen={ false }>
+					<ColorPickerControl
+						label={__("Color", "blocksmith")}
+						value={labelColor}
+						onChange={(color) => setAttributes({ labelColor: color })}
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps( { className: blockClassNames.join( ' ' ) } ) }>

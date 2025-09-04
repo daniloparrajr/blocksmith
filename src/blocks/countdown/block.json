@@ -81,6 +81,9 @@
 		},
 		"labelFontSize": {
 			"type": "string"
+		},
+		"labelColor": {
+			"type": "string"
 		}
 	},
 	"textdomain": "blocksmith",

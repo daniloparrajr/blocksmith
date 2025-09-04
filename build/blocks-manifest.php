@@ -249,6 +249,9 @@ return array(
 			),
 			'labelFontSize' => array(
 				'type' => 'string'
+			),
+			'labelColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'blocksmith',
