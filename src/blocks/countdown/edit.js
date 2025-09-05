@@ -218,7 +218,7 @@ export default function Edit( props ) {
 				</PanelBody>
 				<PanelBody title="Label color" initialOpen={ false }>
 					<ColorPickerControl
-						label={__("Color", "blocksmith")}
+						label={__("Text", "blocksmith")}
 						value={labelColor}
 						onChange={(color) => setAttributes({ labelColor: color })}
 					/>

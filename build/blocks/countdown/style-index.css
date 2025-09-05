@@ -1,3 +1,4 @@
 .wp-block-blocksmith-countdown.has-text-align-center{justify-content:center}.wp-block-blocksmith-countdown.has-text-align-right{justify-content:flex-end}
 .bs-popover-header{align-items:center;display:flex;gap:8px;margin-bottom:16px}.bs-popover-header__title{color:var(--wp-components-color-foreground,#1e1e1e);font-size:13px;margin:0 auto 0 0}
 .bs-date-time-picker-control__content .components-popover__content{min-width:320px;padding:16px}
+.bs-color-picker-control{display:block;max-width:100%;position:relative}.bs-color-picker-control:focus-within .bs-color-picker-control__button-reset,.bs-color-picker-control:hover .bs-color-picker-control__button-reset{opacity:1}.bs-color-picker-control__button{border:1px solid #ddd;gap:8px;width:100%}.bs-color-picker-control__button-reset{margin:auto 8px;opacity:0;position:absolute;right:0;top:8px}.bs-color-picker-control__content .components-popover__content{padding:16px;width:260px}

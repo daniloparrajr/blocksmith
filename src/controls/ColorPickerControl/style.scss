@@ -1,0 +1,31 @@
+.bs-color-picker-control {
+	display: block;
+	max-width: 100%;
+	position: relative;
+
+	&:hover,
+	&:focus-within {
+		.bs-color-picker-control__button-reset {
+			opacity: 1;
+		}
+	}
+
+	&__button {
+		border: 1px solid #ddd;
+		width: 100%;
+		gap: calc(4px * 2);
+	}
+
+	&__button-reset {
+		margin: auto 8px;
+		opacity: 0;
+		position: absolute;
+		right: 0;
+		top: 8px;
+	}
+
+	&__content .components-popover__content {
+		padding: 16px;
+		width: 260px;
+	}
+}

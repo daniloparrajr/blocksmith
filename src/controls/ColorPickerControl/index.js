@@ -5,10 +5,13 @@ import {
 	Button,
 	Dropdown,
 	ColorIndicator,
-	ColorPalette,
-	BaseControl,
-	useBaseControlProps
+	ColorPalette
 } from '@wordpress/components';
+
+/**
+ * Internal dependencies
+ */
+import { reset as resetIcon } from '@wordpress/icons';
 
 /**
  * Block editor dependencies.
@@ -17,40 +20,59 @@ import {
 	useSettings,
 } from '@wordpress/block-editor';
 
-const ColorPickerControl = ({ value, onChange, onClose, ...baseProps }) => {
-	const { baseControlProps, controlProps } = useBaseControlProps( baseProps );
+import './style.scss';
+
+const ColorPickerControl = ({ label, value, onChange, onClose }) => {
 	const [ blockThemeColors ] = useSettings('color.palette');
+
+	const onReset = () => {
+		onChange();
+	};
+
 	return (
-		<BaseControl
-			__nextHasNoMarginBottom
-			{...baseControlProps}
-		>
-			<Dropdown
-				focusOnMount
-				popoverProps={{
-					"offset": 36,
-					"placement": "left-start",
-					"shift": true,
-					"onClose": onClose
-				}}
-				renderToggle={ ( { isOpen, onToggle } ) => (
+		<Dropdown
+			focusOnMount
+			className="bs-color-picker-control"
+			contentClassName={"bs-color-picker-control__content"}
+			popoverProps={{
+				"offset": 36,
+				"placement": "left-start",
+				"shift": true,
+				"onClose": onClose
+			}}
+			renderToggle={ ( { isOpen, onToggle } ) => (
+				<>
 					<Button
+						__next40pxDefaultSize
 						onClick={ onToggle }
 						aria-expanded={ isOpen }
-						{...controlProps}
+						className="bs-color-picker-control__button"
 					>
-						<ColorIndicator colorValue={value} /> Text
+						<ColorIndicator colorValue={value} />
+						<span className="bs-color-picker-control__button-text">{label}</span>
 					</Button>
-				) }
-				renderContent={ () => (
-					<ColorPalette
-						colors={ blockThemeColors }
-						value={ value }
-						onChange={ onChange }
-					/>
-				) }
-			/>
-		</BaseControl>
+					{ value ? (
+						<Button
+							__next40pxDefaultSize
+							onClick={ onReset }
+							size="small"
+							icon={ resetIcon }
+							aria-label="Reset"
+							label="Reset"
+							className="bs-color-picker-control__button-reset"
+						/>
+					) : null }
+				</>
+			) }
+			renderContent={ () => (
+				<ColorPalette
+					__experimentalIsRenderedInSidebar
+					colors={ blockThemeColors }
+					value={ value }
+					onChange={ onChange }
+				/>
+			) }
+		/>
 	);
 };
 
